@@ -20,5 +20,14 @@ GEANT4-based simulation of CE-H HGCal optical tile
   ./LYSim 
 
 ## running
-  at the prompt. do the commands in photontest.mac
+  interactivly try
+
+  /tracking/verbose 1
+  /run/beamOn 1
+
+  at the prompt. 
+ 
+  ./LYSim -m photontest.mac
+
+do the commands in photontest.mac
   look at Analysis.root 
