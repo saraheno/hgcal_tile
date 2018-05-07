@@ -144,12 +144,9 @@ G4VPhysicalVolume* LYSimDetectorConstruction::ConstructDetector()
         ////////////////////////////////////////////
         //// tile
         ////////////////////////////////////////////
-    G4double rod_sizeX  = scint_sizeX;
-    G4double rod_sizeY  = scint_sizeY;
-    G4double rod_sizeZ  = scint_thickness;
     G4Box* solidRod =
       new G4Box("RodBox",                                           //its name
-		0.5*rod_sizeX, 0.5*rod_sizeY, 0.5*rod_sizeZ);     //its size
+		0.5*scint_sizeX, 0.5*scint_sizeY, 0.5*scint_thickness);     //its size
     G4LogicalVolume* logicRod =
       new G4LogicalVolume(solidRod,   //its solid
 			  fEJ200,     //its material
@@ -194,10 +191,10 @@ G4VPhysicalVolume* LYSimDetectorConstruction::ConstructDetector()
                                 "Photocathode");
 
     G4RotationMatrix* rotPhotocat = new G4RotationMatrix;
-    rotPhotocat->rotateX(pi/2*rad);
+    rotPhotocat->rotateX(0*rad);
     rotPhotocat->invert();
 
-    G4ThreeVector transPhotocat(0.*cm, -0.6*rod_sizeX, 0.*cm);
+    G4ThreeVector transPhotocat(0.*mm, 0.*mm, 0.6*scint_thickness);
 
     G4VPhysicalVolume* physPhotocat = 
       new G4PVPlacement(rotPhotocat,
