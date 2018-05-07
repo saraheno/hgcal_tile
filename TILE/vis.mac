@@ -104,7 +104,7 @@
 #/vis/geometry/set/visibility Fiber 0 false
 /vis/viewer/set/style surface
 /vis/viewer/set/hiddenMarker true
-/vis/viewer/set/viewpointThetaPhi 120 150
+/vis/viewer/set/viewpointThetaPhi 90 180
 #
 # Re-establish auto refreshing and verbosity:
 /vis/viewer/set/autoRefresh true

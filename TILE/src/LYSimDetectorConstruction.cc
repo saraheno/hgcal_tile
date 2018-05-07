@@ -95,7 +95,7 @@ void LYSimDetectorConstruction::SetDefaults()
     Photocat_sizeX = 4.0*mm;
     Photocat_sizeY = 4.0*mm;
     Photocat_thickness = 0.5*mm; //arbirary thickness for Photocathode
-    ScintPMT_gap = 0.5*mm; //rough estimate of air gap between scintillator and PMT face
+    ScintPMT_gap = 2.0*mm; //rough estimate of air gap between scintillator and PMT face
 
 
 
@@ -193,8 +193,8 @@ G4VPhysicalVolume* LYSimDetectorConstruction::ConstructDetector()
     G4RotationMatrix* rotPhotocat = new G4RotationMatrix;
     rotPhotocat->rotateX(0*rad);
     rotPhotocat->invert();
-
-    G4ThreeVector transPhotocat(0.*mm, 0.*mm, 0.6*scint_thickness);
+    G4double aPMT = 0.5*scint_thickness+ScintPMT_gap;
+    G4ThreeVector transPhotocat(0.*mm, 0.*mm, aPMT);
 
     G4VPhysicalVolume* physPhotocat = 
       new G4PVPlacement(rotPhotocat,
