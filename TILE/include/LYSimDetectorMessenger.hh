@@ -36,7 +36,8 @@ private:
   G4UIcmdWithABool*           SetWrappingCmd;
   G4UIcmdWithADouble*         SetRefIndexCmd;
     G4UIcmdWithADoubleAndUnit*  SetScintThicknessCmd;
-    G4UIcmdWithADoubleAndUnit*  SetScintSizeXYCmd;
+    G4UIcmdWithADoubleAndUnit*  SetScintSizeXCmd;
+    G4UIcmdWithADoubleAndUnit*  SetScintSizeYCmd;
     G4UIcmdWithADoubleAndUnit*  SetScintPMTGapThicknessCmd;
     G4UIcmdWithADoubleAndUnit*  SetTileAbsLengthCmd;
     G4UIcmdWithADoubleAndUnit*  SetInducedAbsLengthCmd;

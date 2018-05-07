@@ -34,8 +34,11 @@ public:
     void  SetScintThickness (G4double iscint_thickness) {scint_thickness = iscint_thickness;}
     G4double GetScintThickness() {return scint_thickness;}
 
-    void  SetScintSizeXY (G4double iscint_sizeXY) {scint_sizeXY = iscint_sizeXY;}
-    G4double GetScintSizeXY() {return scint_sizeXY;}
+    void  SetScintSizeX (G4double iscint_sizeX) {scint_sizeX = iscint_sizeX;}
+    G4double GetScintSizeX() {return scint_sizeX;}
+
+    void  SetScintSizeY (G4double iscint_sizeY) {scint_sizeY = iscint_sizeY;}
+    G4double GetScintSizeY() {return scint_sizeY;}
 
     void  SetScintPMTGapThickness (G4double ithickness) {ScintPMT_gap = ithickness;}
     G4double GetScintPMTGapThickness() {return ScintPMT_gap;}
@@ -118,9 +121,11 @@ private:
     //Important parameters marked with ////
     G4bool wrapping_toggle; //(Tyvek) wrapping around scintillator
   G4double RefIndex; //Refractive index of fiber or scint-PMT gap
-    G4double world_sizeXY;
+    G4double world_sizeX;
+    G4double world_sizeY;
     G4double world_sizeZ;
-    G4double scint_sizeXY;
+    G4double scint_sizeX;
+    G4double scint_sizeY;
     G4double scint_thickness;
     G4double PMTwindow_sizeXY;
     G4double Photocat_sizeXY;

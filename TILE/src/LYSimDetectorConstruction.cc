@@ -89,7 +89,8 @@ void LYSimDetectorConstruction::SetDefaults()
     fScintPmtGapMat = fWater;
     // Geometry parameters
     //
-    scint_sizeXY = 100.*mm;
+    scint_sizeX = 58*mm;
+    scint_sizeY = 58*mm;
     scint_thickness = 4.0*mm;//3.7*mm for SCSN81
     PMTwindow_sizeXY = 51.*mm; //scenario
     PMTwindow_thickness = 1.0*mm;
@@ -103,8 +104,9 @@ void LYSimDetectorConstruction::SetDefaults()
     readoutCorner = 1;
 
     //world volume just needs to be big enough to accomodate everything
-    world_sizeXY = 10*(scint_sizeXY);
-    world_sizeZ = 10*(scint_sizeXY);
+    world_sizeX = 10*(scint_sizeX);
+    world_sizeY = 10*(scint_sizeY);
+    world_sizeZ = 100*(scint_thickness);
 
 
 }
@@ -120,7 +122,7 @@ G4VPhysicalVolume* LYSimDetectorConstruction::ConstructDetector()
     //
     G4Box* solidWorld =
         new G4Box("World",                                                  //its name
-                  0.5*world_sizeXY, 0.5*world_sizeXY, 0.5*world_sizeZ);     //its size
+                  0.5*world_sizeX, 0.5*world_sizeY, 0.5*world_sizeZ);     //its size
     G4LogicalVolume* logicWorld =
         new G4LogicalVolume(solidWorld, //its solid
                             fAir,       //its material
@@ -140,7 +142,7 @@ G4VPhysicalVolume* LYSimDetectorConstruction::ConstructDetector()
 
 
         ////////////////////////////////////////////
-        //// Rod 5x1x1 cm^3
+        //// tile
         ////////////////////////////////////////////
     G4double rod_sizeX  = 10.0*mm;
     G4double rod_sizeY  = 10.0*mm;

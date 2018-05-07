@@ -11,11 +11,9 @@ GEANT4-based simulation of CE-H HGCal optical tile
 
   cd build 
 
-  cmake -DWITH_GEANT4_UIVIS=ON -DGeant4_DIR=$G4LIB ../UMDSRDGEStudy
+  cmake -DWITH_GEANT4_UIVIS=ON -DGeant4_DIR=$G4LIB ../TILE
 
   make
-
-  cp -r ../UMDSRDGEStudy-utils/* .
 
   ./LYSim 
 
@@ -23,6 +21,7 @@ GEANT4-based simulation of CE-H HGCal optical tile
   interactivly try
 
   /tracking/verbose 1
+
   /run/beamOn 1
 
   at the prompt. 
@@ -30,4 +29,5 @@ GEANT4-based simulation of CE-H HGCal optical tile
   ./LYSim -m photontest.mac
 
 do the commands in photontest.mac
+
   look at Analysis.root 

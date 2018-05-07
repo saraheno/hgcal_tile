@@ -56,13 +56,22 @@ LYSimDetectorMessenger::LYSimDetectorMessenger(LYSimDetectorConstruction * Det)
     SetScintThicknessCmd->SetRange("ScintThickness>=0.");
     SetScintThicknessCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
 
-    SetScintSizeXYCmd = new G4UIcmdWithADoubleAndUnit("/LYSim/SetScintSizeXY", this);
-    SetScintSizeXYCmd->SetGuidance("Set the scintillator transverse dimenstions");
-    SetScintSizeXYCmd->SetParameterName("ScintSizeXY",false);
-    SetScintSizeXYCmd->SetUnitCategory("Length");
-    SetScintSizeXYCmd->SetDefaultUnit("mm");
-    SetScintSizeXYCmd->SetRange("ScintSizeXY>=0.");
-    SetScintSizeXYCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+    SetScintSizeXCmd = new G4UIcmdWithADoubleAndUnit("/LYSim/SetScintSizeX", this);
+    SetScintSizeXCmd->SetGuidance("Set the scintillator transverse dimenstions");
+    SetScintSizeXCmd->SetParameterName("ScintSizeX",false);
+    SetScintSizeXCmd->SetUnitCategory("Length");
+    SetScintSizeXCmd->SetDefaultUnit("mm");
+    SetScintSizeXCmd->SetRange("ScintSizeX>=0.");
+    SetScintSizeXCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
+
+
+    SetScintSizeYCmd = new G4UIcmdWithADoubleAndUnit("/LYSim/SetScintSizeY", this);
+    SetScintSizeYCmd->SetGuidance("Set the scintillator transverse dimenstions");
+    SetScintSizeYCmd->SetParameterName("ScintSizeY",false);
+    SetScintSizeYCmd->SetUnitCategory("Length");
+    SetScintSizeYCmd->SetDefaultUnit("mm");
+    SetScintSizeYCmd->SetRange("ScintSizeY>=0.");
+    SetScintSizeYCmd->AvailableForStates(G4State_PreInit,G4State_Idle);
   
     SetScintPMTGapThicknessCmd = new G4UIcmdWithADoubleAndUnit("/LYSim/SetGapThickness", this);
     SetScintPMTGapThicknessCmd->SetGuidance("Set the thickness of the gap between the scintillator and PMT");
@@ -166,7 +175,8 @@ LYSimDetectorMessenger::~LYSimDetectorMessenger()
     //delete SetShieldingCmd;
     delete SetRefIndexCmd;
     delete SetScintThicknessCmd;
-    delete SetScintSizeXYCmd;
+    delete SetScintSizeXCmd;
+    delete SetScintSizeYCmd;
     delete SetScintPMTGapThicknessCmd;
     //delete SetAngle1Cmd;
     //delete SetAngle2Cmd;
@@ -208,9 +218,13 @@ void LYSimDetectorMessenger::SetNewValue(G4UIcommand* command,G4String val)
         Detector->
             SetScintThickness(G4UIcmdWithADoubleAndUnit::GetNewDoubleValue(val));
     }
-    else if( command == SetScintSizeXYCmd ) {
+    else if( command == SetScintSizeXCmd ) {
         Detector->
-            SetScintSizeXY(G4UIcmdWithADoubleAndUnit::GetNewDoubleValue(val));
+            SetScintSizeX(G4UIcmdWithADoubleAndUnit::GetNewDoubleValue(val));
+    }
+    else if( command == SetScintSizeYCmd ) {
+        Detector->
+            SetScintSizeY(G4UIcmdWithADoubleAndUnit::GetNewDoubleValue(val));
     }
     else if( command == SetScintPMTGapThicknessCmd ) {
         Detector->
