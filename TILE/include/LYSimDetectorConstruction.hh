@@ -127,9 +127,8 @@ private:
     G4double scint_sizeX;
     G4double scint_sizeY;
     G4double scint_thickness;
-    G4double PMTwindow_sizeXY;
-    G4double Photocat_sizeXY;
-    G4double PMTwindow_thickness;
+    G4double Photocat_sizeX;
+    G4double Photocat_sizeY;
     G4double Photocat_thickness;
     G4double ScintPMT_gap; //thickness of gap between scintillator and PMT
     G4double tileAbsLength;

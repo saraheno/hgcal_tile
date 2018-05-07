@@ -92,8 +92,8 @@ void LYSimDetectorConstruction::SetDefaults()
     scint_sizeX = 58*mm;
     scint_sizeY = 58*mm;
     scint_thickness = 4.0*mm;//3.7*mm for SCSN81
-    PMTwindow_sizeXY = 51.*mm; //scenario
-    PMTwindow_thickness = 1.0*mm;
+    Photocat_sizeX = 4.0*mm;
+    Photocat_sizeY = 4.0*mm;
     Photocat_thickness = 0.5*mm; //arbirary thickness for Photocathode
     ScintPMT_gap = 0.5*mm; //rough estimate of air gap between scintillator and PMT face
 
@@ -144,9 +144,9 @@ G4VPhysicalVolume* LYSimDetectorConstruction::ConstructDetector()
         ////////////////////////////////////////////
         //// tile
         ////////////////////////////////////////////
-    G4double rod_sizeX  = 10.0*mm;
-    G4double rod_sizeY  = 10.0*mm;
-    G4double rod_sizeZ  = 50.0*mm;
+    G4double rod_sizeX  = scint_sizeX;
+    G4double rod_sizeY  = scint_sizeY;
+    G4double rod_sizeZ  = scint_thickness;
     G4Box* solidRod =
       new G4Box("RodBox",                                           //its name
 		0.5*rod_sizeX, 0.5*rod_sizeY, 0.5*rod_sizeZ);     //its size
@@ -184,13 +184,9 @@ G4VPhysicalVolume* LYSimDetectorConstruction::ConstructDetector()
         // PMT : FIXME --> change to use HPK R6091
         ////////////////////////////////////////////
 
-    G4Tubs* solidPhotocat =
-      new G4Tubs("Photocathode",
-                       0.,
-                       0.5*65.*mm,
-                       0.5*Photocat_thickness,
-                       0.,
-                       2.*pi);
+    G4Box* solidPhotocat =
+      new G4Box("Photocathode",
+		0.5*Photocat_sizeX,0.5*Photocat_sizeY,0.5*Photocat_thickness);
 
     G4LogicalVolume* logicPhotocat =
       new G4LogicalVolume(solidPhotocat,
