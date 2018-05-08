@@ -64,7 +64,7 @@ LYSimPrimaryGeneratorAction::LYSimPrimaryGeneratorAction(LYSimDetectorConstructi
 
     particleSource->SetParticleDefinition(particle);
     particleSource->SetParticleTime(0.0*ns);
-    G4ThreeVector haha (0.*mm,5.*mm,0.*mm);
+    G4ThreeVector haha (0.*mm,0.5*mm,0.*mm);
     particleSource->SetParticlePosition(haha);
     particleSource->SetParticleEnergy(2.95*eV);
     particleSource->SetParticleMomentumDirection(G4ThreeVector (0.,0.,1.));

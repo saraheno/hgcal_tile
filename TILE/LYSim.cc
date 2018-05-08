@@ -34,7 +34,6 @@ int main(int argc,char** argv)
     //
     G4RunManager * runManager = new G4RunManager;
 
-    G4cout << "[LYSim] 11111" << G4endl;
     // Set mandatory initialization classes
     //
     // Detector construction
@@ -43,7 +42,6 @@ int main(int argc,char** argv)
     //else detector->SetDetectorType(0);
 
     runManager->SetUserInitialization(detector);
-    G4cout << "[LYSim] 22222" << G4endl;
     // Physics list
     LYSimPhysicsList *physlist = new LYSimPhysicsList();
     //if (detector->GetDetectorType()==1) physlist->SetHadProc(true);
@@ -62,7 +60,6 @@ int main(int argc,char** argv)
     //    
     // Primary generator action
     runManager->SetUserAction(genaction);
-    G4cout << "[LYSim] 44444" << G4endl;
     // Run action
     runManager->SetUserAction(new LYSimRunAction(detector));
     // Event action
@@ -75,7 +72,6 @@ int main(int argc,char** argv)
     // Initialize G4 kernel
     //
     runManager->Initialize();
-    G4cout << "[LYSim] 55555" << G4endl;
     //#ifdef G4VIS_USE
     // Initialize visualization
     //G4VisManager* visManager = new G4VisExecutive();
@@ -87,19 +83,34 @@ int main(int argc,char** argv)
     // Get the pointer to the User Interface manager
     G4UImanager* UImanager = G4UImanager::GetUIpointer();
 
+    std::cout<<"[LYSIM] ARGC is "<<argc<<std::endl;
+    for(int i=0;i<argc;i++) {
+      std::cout<<  "argv["<<i<<"]="<<argv[i]<<std::endl;
+    }
+
+
+
+    // [0] is the exe name
+    // [1] is photontest.mac
+    // [2] is -novis
+    // [3] is outputfile name
+    // [4] is rootfile name
     if (argc == 3) {
         G4cout << "[LYSim] argv[2] is " << argv[2] <<G4endl;
         if(std::string(argv[2]) == "-novis") {
-            G4UIExecutive* ui = new G4UIExecutive(argc, argv);
-            ui->SessionStart();
-            UImanager->ApplyCommand("/control/execute init.mac");
-            delete ui;
+	  //G4UIExecutive* ui = new G4UIExecutive(argc, argv);
+	  //ui->SessionStart();
+            //UImanager->ApplyCommand("/control/execute init.mac");
+            G4String command = "/control/execute ";
+            G4String fileName = argv[1];
+            UImanager->ApplyCommand(command+fileName);
+            //delete ui;
         }
         else {
             G4cout << "[LYSim] run in batch mode" <<G4endl;
             // batch mode
             G4String command = "/control/execute ";
-            G4String fileName = argv[2];
+            G4String fileName = argv[1];
             UImanager->ApplyCommand(command+fileName);
         }
     }
