@@ -94,6 +94,9 @@ void Analysis::EndOfEvent(const G4Event* anEvent)
         //G4double HitTime = (*hits)[i]->GetTime();
         if (i==0) {
             HitCount++;
+	    man->FillH2(3,xPos,yPos);
+	    man->FillH2(4,xPos,yPos);
+
         }
 
 

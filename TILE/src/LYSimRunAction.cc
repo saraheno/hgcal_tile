@@ -42,8 +42,11 @@ void LYSimRunAction::BeginOfRunAction(const G4Run* aRun)
 
 
 
-    man->CreateH2("xycr","xy creation point of optical photons",100,-50.,50.,100,-50.,50.);
-    man->CreateH2("szcr","xz creation point of optical photons",100,-50.,50.,100,-50.,50.);
+    man->CreateH2("xycr","xy creation point of optical photons",120,-60.,60.,120,-60.,60.);
+    man->CreateH2("szcr","xz creation point of optical photons",120,-60.,60.,120,-60.,60.);
+
+    man->CreateH2("xycrd","xy creation point of detected optical photons",120,-60.,60.,120,-60.,60.);
+    man->CreateH2("szcrd","xz creation point of detected optical photons",120,-60.,60.,120,-60.,60.);
 
 
 }
