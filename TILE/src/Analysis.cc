@@ -55,6 +55,12 @@ void Analysis::EndOfEvent(const G4Event* anEvent)
 
     G4AnalysisManager* man = G4AnalysisManager::Instance();
 
+    G4PrimaryVertex* ivtx = anEvent->GetPrimaryVertex();
+    G4double xPos = ivtx->GetX0();
+    G4double yPos = ivtx->GetY0();
+    G4double zPos = ivtx->GetZ0();
+    std::cout<<" Michael Burnham creation position is "<<xPos<<","<<yPos<<","<<zPos<<std::endl;
+
     G4String hitCollName = "PMTHitsCollection";
     G4SDManager* SDman = G4SDManager::GetSDMpointer();
     static G4int hitCollID = -1;

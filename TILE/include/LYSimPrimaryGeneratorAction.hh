@@ -5,6 +5,7 @@
 #include "LYSimDetectorConstruction.hh"
 
 #include "G4VUserPrimaryGeneratorAction.hh"
+#include "G4ParticleGun.hh"
 #include "globals.hh"
 
 class G4GeneralParticleSource;
@@ -28,8 +29,9 @@ class LYSimPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
 
   private:
   
-    G4GeneralParticleSource* particleSource;
-    LYSimDetectorConstruction* fDetector;
+  //G4GeneralParticleSource* particleSource;
+  G4ParticleGun* particleSource;
+  LYSimDetectorConstruction* fDetector;
   //G4double PhotonEnergy;
     
 };

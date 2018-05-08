@@ -53,15 +53,21 @@
 
 LYSimPrimaryGeneratorAction::LYSimPrimaryGeneratorAction(LYSimDetectorConstruction* det)
 {
+  std::cout<<"[LYSIM] entering LYSIMPrimaryGeneratorAction"<<std::endl;
     fDetector = det;
-    particleSource = new G4GeneralParticleSource();
-
+    //    particleSource = new G4GeneralParticleSource();
+    particleSource = new G4ParticleGun(1);
+    
 
     G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
     G4ParticleDefinition* particle = G4OpticalPhoton::OpticalPhotonDefinition();
 
     particleSource->SetParticleDefinition(particle);
     particleSource->SetParticleTime(0.0*ns);
+    G4ThreeVector haha (0.*mm,5.*mm,0.*mm);
+    particleSource->SetParticlePosition(haha);
+    G4ThreeVector meme =particleSource->GetParticlePosition();
+    std::cout<<"[LYSIM] set default particle position to "<<meme.x()<<","<<meme.y()<<","<<meme.z()<<std::endl;
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -80,7 +86,7 @@ void LYSimPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
         SetOptPhotonPolar();
     }
     G4ThreeVector pos = particleSource->GetParticlePosition();
-    //std::cout << "XYZXYZXYZ " << pos.x()<<" "<<pos.y()<<" "<<pos.z() << std::endl;
+    std::cout << "XYZXYZXYZ " << pos.x()<<" "<<pos.y()<<" "<<pos.z() << std::endl;
 
     particleSource->GeneratePrimaryVertex(anEvent);
 
