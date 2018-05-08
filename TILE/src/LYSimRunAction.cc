@@ -39,10 +39,8 @@ void LYSimRunAction::BeginOfRunAction(const G4Run* aRun)
                       250,0.,250.); //bins' number, xmin, xmax
     man->CreateH1("h3","Total optical photons energy deposited per event [eV]",
                       100,0.,5.); //bins' number, xmin, xmax
-    man->CreateH1("h4","Muon energy deposited [keV]",
-                      200,0.,2000); //bins' number, xmin, xmax
-    man->CreateH1("h5","Total Muon total energy[MeV]",
-                      100,0.,100.); //bins' number, xmin, xmax
+    man->CreateH2("h4","xy creation point of optical photons",100,-50.,50.,100,-50.,50.);
+    man->CreateH2("h5","xz creation point of optical photons",100,-50.,50.,100,-50.,50.);
 
 
 }
