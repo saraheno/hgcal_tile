@@ -14,7 +14,7 @@
 #include "G4EventManager.hh"
 #include "G4PrimaryVertex.hh"
 #include "LYSimPrimaryGeneratorAction.hh"
-
+#include "G4RootAnalysisManager.hh"
 
 using namespace std;
 using namespace CLHEP;
@@ -47,6 +47,7 @@ void Analysis::PrepareNewEvent(const G4Event* /*anEvent*/)
 }
 void Analysis::EndOfEvent(const G4Event* anEvent)
 {
+  G4int ii;
   // G4PrimaryParticle* primary = anEvent->GetPrimaryVertex(0)->GetPrimary(0);
   // G4cout << G4endl
   //     << ">>> Event " << anEvent->GetEventID() << " >>> Simulation truth : "
@@ -60,8 +61,8 @@ void Analysis::EndOfEvent(const G4Event* anEvent)
     G4double yPos = ivtx->GetY0();
     G4double zPos = ivtx->GetZ0();
     //std::cout<<" [LYSIM] creation position is "<<xPos<<","<<yPos<<","<<zPos<<std::endl;
-    //man->FillH2(4,xPos,yPos);
-    //man->FillH2(5,xPos,yPos);
+    man->FillH2(1,xPos,yPos);
+    man->FillH2(2,xPos,yPos);
 
     G4String hitCollName = "PMTHitsCollection";
     G4SDManager* SDman = G4SDManager::GetSDMpointer();
@@ -100,7 +101,6 @@ void Analysis::EndOfEvent(const G4Event* anEvent)
         EventPhotonCount += (*hits)[i]->GetPhotonCount();
 	man->FillH1(1,HitEnergy/eV);
     }
-       
     man->FillH1(2,EventPhotonCount);//Photon hits per event
     man->FillH1(3,EventEnergy/eV);//total energy deposited at PMT per event
 }

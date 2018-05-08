@@ -33,14 +33,17 @@ void LYSimRunAction::BeginOfRunAction(const G4Run* aRun)
     man->SetFirstHistoId(1);
 
     // Create histogram(s) (avoid non-integer bins)
-    man->CreateH1("h1","Optical photons energy [eV]", //histoID,histo name 
+    man->CreateH1("ogammaE","Optical photons energy [eV]", //histoID,histo name 
                       100,0.,5.); //bins' number, xmin, xmax
-    man->CreateH1("h2","Number of detected photons per event",
+    man->CreateH1("Ndetect","Number of detected photons per event",
                       250,0.,250.); //bins' number, xmin, xmax
-    man->CreateH1("h3","Total optical photons energy deposited per event [eV]",
+    man->CreateH1("totE","Total optical photons energy deposited per event [eV]",
                       100,0.,5.); //bins' number, xmin, xmax
-    man->CreateH2("h4","xy creation point of optical photons",100,-50.,50.,100,-50.,50.);
-    man->CreateH2("h5","xz creation point of optical photons",100,-50.,50.,100,-50.,50.);
+
+
+
+    man->CreateH2("xycr","xy creation point of optical photons",100,-50.,50.,100,-50.,50.);
+    man->CreateH2("szcr","xz creation point of optical photons",100,-50.,50.,100,-50.,50.);
 
 
 }
