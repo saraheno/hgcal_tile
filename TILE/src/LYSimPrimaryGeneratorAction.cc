@@ -66,6 +66,8 @@ LYSimPrimaryGeneratorAction::LYSimPrimaryGeneratorAction(LYSimDetectorConstructi
     particleSource->SetParticleTime(0.0*ns);
     G4ThreeVector haha (0.*mm,5.*mm,0.*mm);
     particleSource->SetParticlePosition(haha);
+    particleSource->SetParticleEnergy(2.95*eV);
+    particleSource->SetParticleMomentumDirection(G4ThreeVector (0.,0.,-1.));
     G4ThreeVector meme =particleSource->GetParticlePosition();
     std::cout<<"[LYSIM] set default particle position to "<<meme.x()<<","<<meme.y()<<","<<meme.z()<<std::endl;
 }
