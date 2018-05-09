@@ -15,7 +15,6 @@ GEANT4-based simulation of CE-H HGCal optical tile
 
   make
 
-  ./LYSim 
 
 ## running
   ./LYSIM photontest.mac [-novis] [output_filename] [root_filename}
