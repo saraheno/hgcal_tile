@@ -58,7 +58,7 @@ target_link_libraries(LYSim ${Geant4_LIBRARIES} ${ROOT_LIBRARIES} )
 # relies on these scripts being in the current working directory.
 #
 set(LYSim_SCRIPTS
-	vis.mac photontest.mac init_vis.mac init.mac
+	vis.mac photontest.mac init_vis.mac init.mac divide2.C AnalysisOutput.C
   )
 
 foreach(_script ${LYSim_SCRIPTS})
@@ -72,7 +72,7 @@ endforeach()
 #----------------------------------------------------------------------------
 # Copy ROOT macros used for Analysis.
 #
-file(COPY macros DESTINATION ${PROJECT_BINARY_DIR})
+#file(COPY macros DESTINATION ${PROJECT_BINARY_DIR})
 
 #----------------------------------------------------------------------------
 # Install the executable to 'bin' directory under CMAKE_INSTALL_PREFIX
