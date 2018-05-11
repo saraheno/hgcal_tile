@@ -92,21 +92,27 @@ void LYSimPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     //G4ThreeVector pos = particleSource->GetParticlePosition();
     //std::cout << "XYZXYZXYZ " << pos.x()<<" "<<pos.y()<<" "<<pos.z() << std::endl;
 
-    G4double xx = fDetector->GetScintSizeX()*(-0.5+G4UniformRand());
-    G4double yy = fDetector->GetScintSizeY()*(-0.5+G4UniformRand());
-    G4double zz = fDetector->GetScintThickness()*(-0.5+G4UniformRand());
-    G4ThreeVector point1 (xx,yy,zz);
-    std::cout<<"[LYSIM] setting vertex at "<<xx<<","<<yy<<","<<zz<<std::endl;
+    std::string name="World";
+    int icnt=0;
+    G4ThreeVector point1(0.*mm,0.*mm,0.*mm);
+    while((name!="Rod")&&(icnt<10)) {
+      G4double xx = fDetector->GetScintSizeX()*(-0.5+G4UniformRand());
+      G4double yy = fDetector->GetScintSizeY()*(-0.5+G4UniformRand());
+      G4double zz = fDetector->GetScintThickness()*(-0.5+G4UniformRand());
+      point1.setX(xx);
+      point1.setY(yy);
+      point1.setZ(zz);
+
     // check if it is in scintillator
 
-    G4VPhysicalVolume* pv =
-      G4TransportationManager::GetTransportationManager()->GetNavigatorForTracking()->LocateGlobalPointAndSetup(point1, (const G4ThreeVector*)0,false, true );
-    std::cout<<"Michael Bernham name is "<<pv->GetName()<<std::endl;
+      G4VPhysicalVolume* pv =
+	G4TransportationManager::GetTransportationManager()->GetNavigatorForTracking()->LocateGlobalPointAndSetup(point1, (const G4ThreeVector*)0,false, true );
+      name=pv->GetName();
+      icnt++;
 
-    /*
-    if(volume == Rod) {
     }
-    */
+    if(icnt==10) std::cout<<"Danger Danger Will Robinson"<<std::endl;
+
     //
     particleSource->SetParticlePosition(point1);
 
