@@ -32,6 +32,7 @@
 #include "Analysis.hh"
 
 #include "LYSimPrimaryGeneratorAction.hh"
+#include "LYSimDetectorConstruction.hh"
 
 #include "Randomize.hh"
 
@@ -91,15 +92,16 @@ void LYSimPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     //G4ThreeVector pos = particleSource->GetParticlePosition();
     //std::cout << "XYZXYZXYZ " << pos.x()<<" "<<pos.y()<<" "<<pos.z() << std::endl;
 
-    G4double xx = G4UniformRand() * 3*mm;
-    G4double yy = G4UniformRand() * 3*mm;
-    G4ThreeVector point1 (xx,yy,0.*mm);
+    G4double xx = fDetector->GetScintSizeX()*(-0.5+G4UniformRand());
+    G4double yy = fDetector->GetScintSizeY()*(-0.5+G4UniformRand());
+    G4double zz = fDetector->GetScintThickness()*(-0.5+G4UniformRand());
+    G4ThreeVector point1 (xx,yy,zz);
+    std::cout<<"[LYSIM] setting vertex at "<<xx<<","<<yy<<","<<zz<<std::endl;
     // check if it is in scintillator
 
-    //G4StepPoint* point1 = step->GetPreStepPoint();
-    //G4VPhysicalVolume* volume = point1->GetTouchableHandle()->GetVolume();
     G4VPhysicalVolume* pv =
       G4TransportationManager::GetTransportationManager()->GetNavigatorForTracking()->LocateGlobalPointAndSetup(point1, (const G4ThreeVector*)0,false, true );
+    std::cout<<"Michael Bernham name is "<<pv->GetName()<<std::endl;
 
     /*
     if(volume == Rod) {
