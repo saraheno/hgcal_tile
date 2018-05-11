@@ -248,6 +248,7 @@ src/LYSimDetectorConstruction.cc.s:
 	$(MAKE) -f CMakeFiles/LYSim.dir/build.make CMakeFiles/LYSim.dir/src/LYSimDetectorConstruction.cc.s
 .PHONY : src/LYSimDetectorConstruction.cc.s
 
+#########
 src/LYSimDetectorMessenger.o: src/LYSimDetectorMessenger.cc.o
 .PHONY : src/LYSimDetectorMessenger.o
 
@@ -271,6 +272,30 @@ src/LYSimDetectorMessenger.s: src/LYSimDetectorMessenger.cc.s
 src/LYSimDetectorMessenger.cc.s:
 	$(MAKE) -f CMakeFiles/LYSim.dir/build.make CMakeFiles/LYSim.dir/src/LYSimDetectorMessenger.cc.s
 .PHONY : src/LYSimDetectorMessenger.cc.s
+#########
+src/LYSimPrimaryGeneratorMessenger.o: src/LYSimPrimaryGeneratorMessenger.cc.o
+.PHONY : src/LYSimPrimaryGeneratorMessenger.o
+
+# target to build an object file
+src/LYSimPrimaryGeneratorMessenger.cc.o:
+	$(MAKE) -f CMakeFiles/LYSim.dir/build.make CMakeFiles/LYSim.dir/src/LYSimPrimaryGeneratorMessenger.cc.o
+.PHONY : src/LYSimPrimaryGeneratorMessenger.cc.o
+
+src/LYSimPrimaryGeneratorMessenger.i: src/LYSimPrimaryGeneratorMessenger.cc.i
+.PHONY : src/LYSimPrimaryGeneratorMessenger.i
+
+# target to preprocess a source file
+src/LYSimPrimaryGeneratorMessenger.cc.i:
+	$(MAKE) -f CMakeFiles/LYSim.dir/build.make CMakeFiles/LYSim.dir/src/LYSimPrimaryGeneratorMessenger.cc.i
+.PHONY : src/LYSimPrimaryGeneratorMessenger.cc.i
+
+src/LYSimPrimaryGeneratorMessenger.s: src/LYSimPrimaryGeneratorMessenger.cc.s
+.PHONY : src/LYSimPrimaryGeneratorMessenger.s
+
+# target to generate assembly for a file
+src/LYSimPrimaryGeneratorMessenger.cc.s:
+	$(MAKE) -f CMakeFiles/LYSim.dir/build.make CMakeFiles/LYSim.dir/src/LYSimPrimaryGeneratorMessenger.cc.s
+.PHONY : src/LYSimPrimaryGeneratorMessenger.cc.s
 
 src/LYSimEventAction.o: src/LYSimEventAction.cc.o
 .PHONY : src/LYSimEventAction.o
@@ -588,6 +613,9 @@ help:
 	@echo "... src/LYSimDetectorMessenger.o"
 	@echo "... src/LYSimDetectorMessenger.i"
 	@echo "... src/LYSimDetectorMessenger.s"
+	@echo "... src/LYSimPrimaryGeneratorMessenger.o"
+	@echo "... src/LYSimPrimaryGeneratorMessenger.i"
+	@echo "... src/LYSimPrimaryGeneratorMessenger.s"
 	@echo "... src/LYSimEventAction.o"
 	@echo "... src/LYSimEventAction.i"
 	@echo "... src/LYSimEventAction.s"

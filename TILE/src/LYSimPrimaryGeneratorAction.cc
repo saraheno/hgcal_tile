@@ -33,6 +33,7 @@
 
 #include "LYSimPrimaryGeneratorAction.hh"
 #include "LYSimDetectorConstruction.hh"
+#include "LYSimPrimaryGeneratorMessenger.hh"
 
 #include "Randomize.hh"
 
@@ -57,9 +58,11 @@ LYSimPrimaryGeneratorAction::LYSimPrimaryGeneratorAction(LYSimDetectorConstructi
 {
   std::cout<<"[LYSIM] entering LYSIMPrimaryGeneratorAction"<<std::endl;
     fDetector = det;
+    fprimarygeneratorMessenger = new LYSimPrimaryGeneratorMessenger(this);
     //    particleSource = new G4GeneralParticleSource();
     particleSource = new G4ParticleGun(1);
-    
+
+    source000_toggle=false;
 
     G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
     G4ParticleDefinition* particle = G4OpticalPhoton::OpticalPhotonDefinition();
@@ -95,23 +98,25 @@ void LYSimPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     std::string name="World";
     int icnt=0;
     G4ThreeVector point1(0.*mm,0.*mm,0.*mm);
-    while((name!="Rod")&&(icnt<10)) {
-      G4double xx = fDetector->GetScintSizeX()*(-0.5+G4UniformRand());
-      G4double yy = fDetector->GetScintSizeY()*(-0.5+G4UniformRand());
-      G4double zz = fDetector->GetScintThickness()*(-0.5+G4UniformRand());
-      point1.setX(xx);
-      point1.setY(yy);
-      point1.setZ(zz);
+    if(!source000_toggle) {
+      while((name!="Rod")&&(icnt<10)) {
+	G4double xx = fDetector->GetScintSizeX()*(-0.5+G4UniformRand());
+	G4double yy = fDetector->GetScintSizeY()*(-0.5+G4UniformRand());
+	G4double zz = fDetector->GetScintThickness()*(-0.5+G4UniformRand());
+	point1.setX(xx);
+	point1.setY(yy);
+	point1.setZ(zz);
 
-    // check if it is in scintillator
+	// check if it is in scintillator
 
-      G4VPhysicalVolume* pv =
-	G4TransportationManager::GetTransportationManager()->GetNavigatorForTracking()->LocateGlobalPointAndSetup(point1, (const G4ThreeVector*)0,false, true );
-      name=pv->GetName();
-      icnt++;
+	G4VPhysicalVolume* pv =
+	  G4TransportationManager::GetTransportationManager()->GetNavigatorForTracking()->LocateGlobalPointAndSetup(point1, (const G4ThreeVector*)0,false, true );
+	name=pv->GetName();
+	icnt++;
 
+      }
+      if(icnt==10) std::cout<<"Danger Danger Will Robinson"<<std::endl;
     }
-    if(icnt==10) std::cout<<"Danger Danger Will Robinson"<<std::endl;
     particleSource->SetParticlePosition(point1);
     //
     // set photon direction randomly

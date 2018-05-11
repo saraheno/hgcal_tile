@@ -11,6 +11,8 @@
 class G4GeneralParticleSource;
 class G4Event;
 class LYSimDetectorConstruction;
+class LYSimPrimaryGeneratorAction;
+class LYSimPrimaryGeneratorMessenger;
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
@@ -23,15 +25,22 @@ class LYSimPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
   public:
     void GeneratePrimaries(G4Event*);
 
+
+  void SetSource000Toggle (G4bool toggle) {source000_toggle = toggle;}
+  G4bool GetSource000Toggle () {return source000_toggle;}
+
+
     void SetOptPhotonPolar();
     void SetOptPhotonPolar(G4double);
     const G4ThreeVector GetSourcePosition();
 
   private:
-  
+  LYSimPrimaryGeneratorMessenger* fprimarygeneratorMessenger;  
+
   //G4GeneralParticleSource* particleSource;
   G4ParticleGun* particleSource;
   LYSimDetectorConstruction* fDetector;
+  G4bool source000_toggle;
   //G4double PhotonEnergy;
     
 };
