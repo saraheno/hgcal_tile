@@ -43,6 +43,7 @@
 #include "G4UnitsTable.hh"
 #include "G4SystemOfUnits.hh"
 #include "G4RandomDirection.hh"
+#include "G4TransportationManager.hh"
 
 #include <CLHEP/Units/PhysicalConstants.h>
 
@@ -64,8 +65,8 @@ LYSimPrimaryGeneratorAction::LYSimPrimaryGeneratorAction(LYSimDetectorConstructi
 
     particleSource->SetParticleDefinition(particle);
     particleSource->SetParticleTime(0.0*ns);
-    G4ThreeVector haha (0.*mm,0.5*mm,0.*mm);
-    particleSource->SetParticlePosition(haha);
+    G4ThreeVector point1 (0.*mm,0.*mm,0.*mm);
+    particleSource->SetParticlePosition(point1);
     particleSource->SetParticleEnergy(2.95*eV);
     particleSource->SetParticleMomentumDirection(G4ThreeVector (0.,0.,1.));
     G4ThreeVector meme =particleSource->GetParticlePosition();
@@ -87,8 +88,26 @@ void LYSimPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     {
         SetOptPhotonPolar();
     }
-    G4ThreeVector pos = particleSource->GetParticlePosition();
+    //G4ThreeVector pos = particleSource->GetParticlePosition();
     //std::cout << "XYZXYZXYZ " << pos.x()<<" "<<pos.y()<<" "<<pos.z() << std::endl;
+
+    G4double xx = G4UniformRand() * 3*mm;
+    G4double yy = G4UniformRand() * 3*mm;
+    G4ThreeVector point1 (xx,yy,0.*mm);
+    // check if it is in scintillator
+
+    //G4StepPoint* point1 = step->GetPreStepPoint();
+    //G4VPhysicalVolume* volume = point1->GetTouchableHandle()->GetVolume();
+    G4VPhysicalVolume* pv =
+      G4TransportationManager::GetTransportationManager()->GetNavigatorForTracking()->LocateGlobalPointAndSetup(point1, (const G4ThreeVector*)0,false, true );
+
+    /*
+    if(volume == Rod) {
+    }
+    */
+    //
+    particleSource->SetParticlePosition(point1);
+
 
     particleSource->GeneratePrimaryVertex(anEvent);
 
