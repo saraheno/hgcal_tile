@@ -112,10 +112,15 @@ void LYSimPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
 
     }
     if(icnt==10) std::cout<<"Danger Danger Will Robinson"<<std::endl;
-
-    //
     particleSource->SetParticlePosition(point1);
-
+    //
+    // set photon direction randomly
+    double phi = pi*G4UniformRand();
+    double costheta = -1+2.*G4UniformRand();
+    double sintheta= sqrt(1.-costheta*costheta);
+    G4ThreeVector Direction(cos(phi)*sintheta,sin(phi)*sintheta,costheta);
+    particleSource->SetParticleMomentumDirection(Direction);
+			    
 
     particleSource->GeneratePrimaryVertex(anEvent);
 
