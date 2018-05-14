@@ -101,6 +101,7 @@ void LYSimPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     G4ThreeVector point1(0.*mm,0.*mm,0.*mm);
     if(!source000_toggle) {
       while((name!="Rod")&&(icnt<10)) {
+	if(icnt!=0) std::cout<<"rethrowing since name is "<<name<<" at coord "<<point1.x()<<","<<point1.y()<<","<<point1.z()<<std::endl;
 	G4double xx = fDetector->GetScintSizeX()*(-0.5+G4UniformRand());
 	G4double yy = fDetector->GetScintSizeY()*(-0.5+G4UniformRand());
 	G4double zz = fDetector->GetScintThickness()*(-0.5+G4UniformRand());
@@ -130,6 +131,11 @@ void LYSimPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
       Direction.setY(sin(phi)*sintheta);
       Direction.setZ(costheta);
     }
+    /*
+    Direction.setX(0.);
+    Direction.setY(0.);
+    Direction.setZ(-1.);
+    */
     particleSource->SetParticleMomentumDirection(Direction);
 			    
 

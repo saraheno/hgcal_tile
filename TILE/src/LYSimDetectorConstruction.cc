@@ -6,6 +6,7 @@
 #include "G4UnitsTable.hh"
 #include "G4SubtractionSolid.hh"
 #include "G4Box.hh"
+#include "G4Sphere.hh"
 #include "G4Tubs.hh"
 #include "G4Cons.hh"
 #include "G4Orb.hh"
@@ -175,6 +176,40 @@ G4VPhysicalVolume* LYSimDetectorConstruction::ConstructDetector()
     RodVisAtt->SetForceWireframe(true);
     RodVisAtt->SetVisibility(true);
     logicRod->SetVisAttributes(RodVisAtt);
+
+
+    ///////////////////////////////////////////////////////
+    //  dimple
+    /////////////////////////////////////////////////////////
+    
+    G4double Dsize(2.*mm);
+    //    G4Box* solidDimple =
+    //new G4Box("Dimple",                                           //its name
+    //	       5.*Dsize,5.*Dsize,Dsize);     //its size
+    G4Sphere* solidDimple = new G4Sphere("Dimple",0.,Dsize,0.,2.*pi,pi/2.,pi);
+    G4LogicalVolume* logicDimple =
+      new G4LogicalVolume(solidDimple,   //its solid
+			  fAir,     //its material
+			  "Dimple");     //its name
+
+    G4double zdisp = 0.5*scint_thickness;
+    G4ThreeVector DimpleOffset(0, 0, zdisp);
+    G4VPhysicalVolume* DimpleRod = 
+      new G4PVPlacement(0,
+                              DimpleOffset,
+                              logicDimple,
+                              "Dimple",
+                              logicRod,
+                              false,
+                              0,
+                              checkOverlaps);
+
+
+        //Rod visualization attributes
+    G4VisAttributes * DimpleVisAtt = new G4VisAttributes(G4Colour(0.,1.,1.));
+    DimpleVisAtt->SetForceWireframe(true);
+    DimpleVisAtt->SetVisibility(true);
+    logicDimple->SetVisAttributes(DimpleVisAtt);
 
 
         ////////////////////////////////////////////
