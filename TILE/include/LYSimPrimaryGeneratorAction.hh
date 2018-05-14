@@ -30,6 +30,10 @@ class LYSimPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
   G4bool GetSource000Toggle () {return source000_toggle;}
 
 
+  void SetAngle000Toggle (G4bool toggle) {angle000_toggle = toggle;}
+  G4bool GetAngle000Toggle () {return angle000_toggle;}
+
+
     void SetOptPhotonPolar();
     void SetOptPhotonPolar(G4double);
     const G4ThreeVector GetSourcePosition();
@@ -41,6 +45,7 @@ class LYSimPrimaryGeneratorAction : public G4VUserPrimaryGeneratorAction
   G4ParticleGun* particleSource;
   LYSimDetectorConstruction* fDetector;
   G4bool source000_toggle;
+  G4bool angle000_toggle;
   //G4double PhotonEnergy;
     
 };

@@ -30,8 +30,8 @@ private:
   LYSimPrimaryGeneratorAction* Paction;
     G4UIdirectory* detDir;
 
-
   G4UIcmdWithABool*           SetSource000Cmd;
+  G4UIcmdWithABool*           SetAngle000Cmd;
 
 
 

@@ -63,6 +63,7 @@ LYSimPrimaryGeneratorAction::LYSimPrimaryGeneratorAction(LYSimDetectorConstructi
     particleSource = new G4ParticleGun(1);
 
     source000_toggle=false;
+    angle000_toggle=false;
 
     G4ParticleTable* particleTable = G4ParticleTable::GetParticleTable();
     G4ParticleDefinition* particle = G4OpticalPhoton::OpticalPhotonDefinition();
@@ -120,10 +121,15 @@ void LYSimPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     particleSource->SetParticlePosition(point1);
     //
     // set photon direction randomly
-    double phi = pi*G4UniformRand();
-    double costheta = -1+2.*G4UniformRand();
-    double sintheta= sqrt(1.-costheta*costheta);
-    G4ThreeVector Direction(cos(phi)*sintheta,sin(phi)*sintheta,costheta);
+    G4ThreeVector Direction(0.,0.,1.);
+    if(!angle000_toggle) {
+      double phi = pi*G4UniformRand();
+      double costheta = -1+2.*G4UniformRand();
+      double sintheta= sqrt(1.-costheta*costheta);
+      Direction.setX(cos(phi)*sintheta);
+      Direction.setY(sin(phi)*sintheta);
+      Direction.setZ(costheta);
+    }
     particleSource->SetParticleMomentumDirection(Direction);
 			    
 
