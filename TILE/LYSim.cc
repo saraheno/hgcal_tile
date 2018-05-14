@@ -85,7 +85,15 @@ int main(int argc,char** argv)
 
     std::cout<<"[LYSIM] ARGC is "<<argc<<std::endl;
     for(int i=0;i<argc;i++) {
-      std::cout<<  "argv["<<i<<"]="<<argv[i]<<std::endl;
+      std::cout<<  "argv["<<i<<"]="<<argv[i];
+      
+      if(i==0) {std::cout<<" is the file name"<<std::endl;}
+      else if(i==1) {std::cout<<" is the macro to run (only works if at least 3 arguements supplied)"<<std::endl;}
+      else if(i==2) {std::cout<<" anything here prevents the visualization"<<std::endl;}
+      else if(i==3) {std::cout<<" is the output file name"<<std::endl;}
+      else if(i==4) {std::cout<<" is the root file name"<<std::endl;}
+      else {std::cout<<" invalid option"<<std::endl;}
+      
     }
 
 
