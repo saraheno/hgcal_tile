@@ -142,6 +142,43 @@ G4VPhysicalVolume* LYSimDetectorConstruction::ConstructDetector()
     logicWorld -> SetVisAttributes(G4VisAttributes::Invisible); //MakeInvisible
 
 
+    ///////////////////////////////////////////////
+    // wrapping
+    /////////////////////////////////////////////////
+    G4double wrapgap = 4*mm;
+    G4Box* solidWrap =
+      new G4Box("WrapBox",                                           //its name
+		0.5*scint_sizeX+wrapgap, 0.5*scint_sizeY+wrapgap, 0.5*scint_thickness+wrapgap);     //its size
+    G4LogicalVolume* logicWrap =
+      new G4LogicalVolume(solidWrap,   //its solid
+			  fAir,     //its material
+			  "Wrap");     //its name
+
+
+    G4ThreeVector WrapOffset(0, 0, 0);
+    G4VPhysicalVolume* physWrap = 
+      new G4PVPlacement(0,
+                              WrapOffset,
+                              logicWrap,
+                              "Wrap",
+                              logicWorld,
+                              false,
+                              0,
+                              checkOverlaps);
+
+    G4LogicalBorderSurface* WrapAirSurface = 
+            new G4LogicalBorderSurface("WrapAirSurface",
+                                       physWrap,
+                                       physWorld,
+                                       fUnifiedIdealTyvekOpSurface);
+
+        //Wrap visualization attributes
+    G4VisAttributes * WrapVisAtt = new G4VisAttributes(G4Colour(0.,1.,0.));
+    WrapVisAtt->SetForceWireframe(true);
+    WrapVisAtt->SetVisibility(true);
+    logicWrap->SetVisAttributes(WrapVisAtt);
+
+
         ////////////////////////////////////////////
         //// tile
         ////////////////////////////////////////////
@@ -160,7 +197,7 @@ G4VPhysicalVolume* LYSimDetectorConstruction::ConstructDetector()
                               RodOffset,
                               logicRod,
                               "Rod",
-                              logicWorld,
+                              logicWrap,
                               false,
                               0,
                               checkOverlaps);
