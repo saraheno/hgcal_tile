@@ -84,6 +84,9 @@ private:
     G4LogicalVolume* logicWorld;
     G4VPhysicalVolume* physWorld;
 
+  //pointer for wrapping
+  G4LogicalVolume* logicWWW;
+
     //Pointers to materials
     G4Material* fVacuum;
     G4Material* fAir;
