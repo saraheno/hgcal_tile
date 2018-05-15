@@ -134,6 +134,7 @@ private:
     G4double Photocat_sizeY;
     G4double Photocat_thickness;
     G4double ScintPMT_gap; //thickness of gap between scintillator and PMT
+  G4double wrapgap;  // distance between tile and wrapping
     G4double tileAbsLength;
     G4double inducedMuTile; //Radiation-induced absorption coefficient (cm^-1) in tile
 

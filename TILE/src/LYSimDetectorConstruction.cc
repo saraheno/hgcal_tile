@@ -98,7 +98,7 @@ void LYSimDetectorConstruction::SetDefaults()
     Photocat_sizeY = 4.0*mm;
     Photocat_thickness = 0.5*mm; //arbirary thickness for Photocathode
     ScintPMT_gap = 2.0*mm; //rough estimate of air gap between scintillator and PMT face
-
+    wrapgap=4.*mm;
 
 
     tileAbsLength = 380*cm;
@@ -149,7 +149,6 @@ G4VPhysicalVolume* LYSimDetectorConstruction::ConstructDetector()
     /////////////////////////////////////////////////
 
     if(wrapping_toggle) {    
-      G4double wrapgap = 4*mm;
       G4Box* solidWrap =
 	new G4Box("WrapBox",                                           //its name
 		  0.5*scint_sizeX+wrapgap, 0.5*scint_sizeY+wrapgap, 0.5*scint_thickness+wrapgap);     //its size
