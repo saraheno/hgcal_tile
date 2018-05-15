@@ -22,4 +22,15 @@ GEANT4-based simulation of CE-H HGCal optical tile
     (if running without -novis
          /run/beamOn 5
 
-  look at Analysis.root 
+## run the job on condor.
+
+edit the condor-*.* so that they point to your areas, not mine
+
+submit with
+
+condor_submit condor_jobs.jdl
+
+see if it is running with
+
+condor_q -submitter your-user-name  look at Analysis.root 
+
