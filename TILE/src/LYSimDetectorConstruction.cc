@@ -105,9 +105,9 @@ void LYSimDetectorConstruction::SetDefaults()
     readoutCorner = 1;
 
     //world volume just needs to be big enough to accomodate everything
-    world_sizeX = 10*(scint_sizeX);
-    world_sizeY = 10*(scint_sizeY);
-    world_sizeZ = 100*(scint_thickness);
+    world_sizeX = 3*(scint_sizeX);
+    world_sizeY = 3*(scint_sizeY);
+    world_sizeZ = 30*(scint_thickness);
 
 
 }
@@ -145,6 +145,8 @@ G4VPhysicalVolume* LYSimDetectorConstruction::ConstructDetector()
     ///////////////////////////////////////////////
     // wrapping
     /////////////////////////////////////////////////
+
+    
     G4double wrapgap = 4*mm;
     G4Box* solidWrap =
       new G4Box("WrapBox",                                           //its name
@@ -177,7 +179,7 @@ G4VPhysicalVolume* LYSimDetectorConstruction::ConstructDetector()
     WrapVisAtt->SetForceWireframe(true);
     WrapVisAtt->SetVisibility(true);
     logicWrap->SetVisAttributes(WrapVisAtt);
-
+    
 
         ////////////////////////////////////////////
         //// tile
@@ -197,6 +199,7 @@ G4VPhysicalVolume* LYSimDetectorConstruction::ConstructDetector()
                               RodOffset,
                               logicRod,
                               "Rod",
+			//                              logicWorld,
                               logicWrap,
                               false,
                               0,
@@ -219,7 +222,7 @@ G4VPhysicalVolume* LYSimDetectorConstruction::ConstructDetector()
     //  dimple
     /////////////////////////////////////////////////////////
     
-    G4double Dsize(2.*mm);
+    G4double Dsize(1.0*mm);
     //    G4Box* solidDimple =
     //new G4Box("Dimple",                                           //its name
     //	       5.*Dsize,5.*Dsize,Dsize);     //its size
@@ -273,7 +276,8 @@ G4VPhysicalVolume* LYSimDetectorConstruction::ConstructDetector()
                               transPhotocat,
                               logicPhotocat,
                               "Photocathode",
-                              logicWorld,
+			//logicWorld,
+                              logicWrap,
                               false,
                               0,
                               checkOverlaps);
