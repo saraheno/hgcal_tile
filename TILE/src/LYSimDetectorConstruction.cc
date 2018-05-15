@@ -222,7 +222,7 @@ G4VPhysicalVolume* LYSimDetectorConstruction::ConstructDetector()
     //  dimple
     /////////////////////////////////////////////////////////
     
-    G4double Dsize(1.0*mm);
+    G4double Dsize(2.0*mm);
     //    G4Box* solidDimple =
     //new G4Box("Dimple",                                           //its name
     //	       5.*Dsize,5.*Dsize,Dsize);     //its size

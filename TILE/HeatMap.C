@@ -73,7 +73,7 @@ void HeatMap() {
 
 
 
-  gStyle->SetOptStat(111111);
+  gStyle->SetOptStat(0);
 
   TString canvName = "Fig_";
   canvName += "haha";
@@ -88,6 +88,8 @@ void HeatMap() {
   float L = 0.12*W;
   float R = 0.04*W;
 
+
+
   canv->SetFillColor(0);
   canv->SetBorderMode(0);
   canv->SetFrameFillStyle(0);
@@ -98,7 +100,7 @@ void HeatMap() {
   canv->SetBottomMargin( B/H );
   canv->SetTickx(0);
   canv->SetTicky(0);
-
+  canv->SetRightMargin(canv->GetLeftMargin());
 
 
 
