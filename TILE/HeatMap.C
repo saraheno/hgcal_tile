@@ -35,9 +35,13 @@ void HeatMap() {
   TH2F* dhist = static_cast<TH2F*>(f->Get(hdenom)->Clone());
 
 
-  TH2F* nhistrb = nhist->Rebin2D(10,10);
-  TH2F* dhistrb = dhist->Rebin2D(10,10);
+  //TH2F* nhistrb = nhist->Rebin2D(10,10);
+  //TH2F* dhistrb = dhist->Rebin2D(10,10);
+  TH2F* nhistrb = static_cast<TH2F*>(nhist->Clone());
+  TH2F* dhistrb = static_cast<TH2F*>(dhist->Clone());
   TH2F* rhist = static_cast<TH2F*>(nhistrb->Clone());
+
+
 
 
   int nbinxnum = nhistrb->GetNbinsX();
