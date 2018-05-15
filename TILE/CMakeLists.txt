@@ -58,7 +58,7 @@ target_link_libraries(LYSim ${Geant4_LIBRARIES} ${ROOT_LIBRARIES} )
 # relies on these scripts being in the current working directory.
 #
 set(LYSim_SCRIPTS
-	vis.mac photontest.mac init_vis.mac init.mac HeatMap.C AnalysisOutput.C photontest_000.mac
+	vis.mac photontest.mac init_vis.mac init.mac HeatMap.C AnalysisOutput.C photontest_000.mac condor-jobs.jdl condor-executable.sh
   )
 
 foreach(_script ${LYSim_SCRIPTS})
