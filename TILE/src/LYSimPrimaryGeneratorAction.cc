@@ -135,7 +135,7 @@ void LYSimPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
     particleSource->SetParticleMomentumDirection(Direction);
 			    
 
-    std::cout<<" photon position is "<<point1.x()<<","<<point1.y()<<","<<point1.z()<<" and direction is "<<Direction.x()<<","<<Direction.y()<<","<<Direction.z()<<std::endl;
+    //std::cout<<" photon position is "<<point1.x()<<","<<point1.y()<<","<<point1.z()<<" and direction is "<<Direction.x()<<","<<Direction.y()<<","<<Direction.z()<<std::endl;
 
     particleSource->GeneratePrimaryVertex(anEvent);
 

@@ -60,7 +60,7 @@ void Analysis::EndOfEvent(const G4Event* anEvent)
     G4double xPos = ivtx->GetX0();
     G4double yPos = ivtx->GetY0();
     G4double zPos = ivtx->GetZ0();
-    std::cout<<" [LYSIM] creation position is "<<xPos<<","<<yPos<<","<<zPos<<std::endl;
+    //std::cout<<" [LYSIM] creation position is "<<xPos<<","<<yPos<<","<<zPos<<std::endl;
     man->FillH2(1,xPos,yPos);
     man->FillH2(2,xPos,yPos);
 
