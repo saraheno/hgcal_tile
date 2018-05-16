@@ -91,7 +91,7 @@ void Analysis::EndOfEvent(const G4Event* anEvent)
     for (G4int i=0; i<nHits; i++)
     {
         G4double HitEnergy = (*hits)[i]->GetEnergy();
-        //G4double HitTime = (*hits)[i]->GetTime();
+        G4double HitTime = (*hits)[i]->GetTime();
         if (i==0) {
             HitCount++;
 	    man->FillH2(3,xPos,yPos);
@@ -103,6 +103,7 @@ void Analysis::EndOfEvent(const G4Event* anEvent)
         EventEnergy += HitEnergy;
         EventPhotonCount += (*hits)[i]->GetPhotonCount();
 	man->FillH1(1,HitEnergy/eV);
+	man->FillH1(4,HitTime/ns);
     }
     man->FillH1(2,EventPhotonCount);//Photon hits per event
     man->FillH1(3,EventEnergy/eV);//total energy deposited at PMT per event

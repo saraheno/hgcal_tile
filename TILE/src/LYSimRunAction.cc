@@ -40,8 +40,10 @@ void LYSimRunAction::BeginOfRunAction(const G4Run* aRun)
     man->CreateH1("totE","Total optical photons energy deposited per event [eV]",
                       100,0.,5.); //bins' number, xmin, xmax
 
+    man->CreateH1("timeGamma","time of detected photon [ns]",100,0.,100.);
 
 
+    //2D hists
     man->CreateH2("xycr","xy creation point of optical photons",120,-60.,60.,120,-60.,60.);
     man->CreateH2("szcr","xz creation point of optical photons",120,-60.,60.,120,-60.,60.);
 
