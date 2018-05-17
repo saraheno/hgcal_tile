@@ -62,7 +62,9 @@ void Analysis::EndOfEvent(const G4Event* anEvent)
     G4double zPos = ivtx->GetZ0();
     //std::cout<<" [LYSIM] creation position is "<<xPos<<","<<yPos<<","<<zPos<<std::endl;
     man->FillH2(1,xPos,yPos);
-    man->FillH2(2,xPos,yPos);
+    man->FillH2(2,xPos,zPos);
+    man->FillH1(5,xPos);
+
 
     G4String hitCollName = "PMTHitsCollection";
     G4SDManager* SDman = G4SDManager::GetSDMpointer();
@@ -95,7 +97,8 @@ void Analysis::EndOfEvent(const G4Event* anEvent)
         if (i==0) {
             HitCount++;
 	    man->FillH2(3,xPos,yPos);
-	    man->FillH2(4,xPos,yPos);
+	    man->FillH2(4,xPos,zPos);
+	    man->FillH1(6,xPos);
 
         }
 
