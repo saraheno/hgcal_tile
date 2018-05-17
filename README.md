@@ -7,6 +7,8 @@ GEANT4-based simulation of CE-H HGCal optical tile
 
   cd hgcal_tile
 
+  ./g4env.csh
+
   mkdir build
 
   cd build 
