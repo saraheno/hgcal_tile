@@ -2,7 +2,7 @@
 
 cd /home/eno/hgtile/build/
 
-export UNIQUE_ID=se
+export UNIQUE_ID=sce
 export CONDOR_PROCESS=sce
 export RUN_DIR=`pwd`
 export PARAMETER_SET=photontest.mac
