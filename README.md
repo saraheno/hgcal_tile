@@ -34,5 +34,7 @@ condor_submit condor_jobs.jdl
 
 see if it is running with
 
-condor_q -submitter your-user-name  look at Analysis.root 
+condor_q -submitter your-user-name  
+
+look at Analysis.root 
 
