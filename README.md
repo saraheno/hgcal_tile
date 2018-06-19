@@ -13,7 +13,7 @@ GEANT4-based simulation of CE-H HGCal optical tile
 
   cd build 
 
-  cmake -DWITH_GEANT4_UIVIS=ON -DGeant4_DIR=G4LIB ../TILE
+  cmake -DWITH_GEANT4_UIVIS=ON -DGeant4_DIR=$G4LIB ../TILE
 
   make
 
